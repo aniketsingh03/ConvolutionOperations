@@ -24,19 +24,25 @@ def convolution_2D(input_image, image_width, image_height, kernel, kernel_height
             elif (output_matrix[i][j]<0):
                 output_matrix[i][j] = 0
 
-input_image_matrix = np.asarray(Image.open("source.jpg").convert("L"))
+input_image_matrix = np.asarray(Image.open("source_2.jpg").convert("L"))
 
 input_image_height = len(input_image_matrix)
 input_image_width = len(input_image_matrix[0])
-
 #defining kernel for convolution
-convolution_kernel = np.array([[0,1,0], [1,-4,1], [0,1,0]])
 convolution_kernel_width = 3
 convolution_kernel_height = 3
+convolution_kernel = np.array([[0,1,0], [1,-4,1], [0,1,0]])
+
+#kernel for cropping images
+# convolution_kernel_width = 30
+# convolution_kernel_height = 30
+# convolution_kernel = np.zeros(shape=(convolution_kernel_width,convolution_kernel_height))
+# convolution_kernel[0][0]=1
+
 convolution_2D(input_image_matrix, input_image_width, input_image_height, convolution_kernel, convolution_kernel_height, convolution_kernel_width)
 print (input_image_matrix)
 print (output_matrix)
 #convert numpy matrix back to image
 output_image = Image.fromarray(output_matrix)
 output_image.show()
-output_image.save('target.jpeg')
+output_image.save('target_3.jpeg')
